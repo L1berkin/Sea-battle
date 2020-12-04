@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import { Component } from "react";
+import Layout from "./hoc/Layout/Layout";
+import GamePage from "./Pages/GamePage/GamePage";
+import StartPage from "./Pages/StartPage/StartPage";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {
+    start: false
+  }
+
+  render() {
+    return (
+      <div>
+        <Layout>
+          <StartPage />
+          <GamePage />
+        </Layout>
+      </div>
+    )
+  }
 }
 
 export default App;
