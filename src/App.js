@@ -5,15 +5,20 @@ import StartPage from "./Pages/StartPage/StartPage";
 
 class App extends Component {
   state = {
-    start: false
+    start: true
+  }
+
+  startClickHandler = () => {
+    this.setState({
+      start: true
+    })
   }
 
   render() {
     return (
       <div>
         <Layout>
-          <StartPage />
-          <GamePage />
+          {this.state.start ? <GamePage /> : <StartPage startTap={this.startClickHandler} />}
         </Layout>
       </div>
     )
