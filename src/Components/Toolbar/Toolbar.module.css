@@ -55,3 +55,31 @@
 .shipsList li {
   margin: 1em 0;
 }
+
+.back {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  color: #fff;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  font-weight: bold;
+  border: 2px solid #fff;
+  border-radius: 8px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.back:hover {
+  background: rgba(202, 202, 255, 0.49);
+  color: #000;
+}
+
+.back:active {
+  background: rgba(102, 107, 154, 0.523);
+  color: #000;
+  color: #fff;
+}

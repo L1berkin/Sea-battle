@@ -1,7 +1,7 @@
 import classes from './InfoTitle.module.css'
 
 const InfoTitle = props => {
-  const text = 'Начните игру'
+  const text = `${props.namePlayer1} разместите корабли на поле.`
   return (
     <p className={classes.InfoTitle}>
       {text}

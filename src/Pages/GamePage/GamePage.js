@@ -80,8 +80,12 @@ class GamePage extends Component {
           startGame={this.state.readyGame}
           onReadyBtn={this.startGameHandler}
           onChangeShip={this.changeShip}
+          onReturnBack={this.props.onReturnBack}
         />
-        <InfoTitle />
+        <InfoTitle 
+          namePlayer1={this.props.namePlayer1}
+          namePlayer2={this.props.namePlayer2}
+        />
         <PlayerFields 
           player1={this.state.player1}
           player2={this.state.player2}
