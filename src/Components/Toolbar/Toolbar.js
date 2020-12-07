@@ -2,14 +2,15 @@ import classes from './Toolbar.module.css'
 
 const Toolbar = props => {
   return (
+
     <div className={classes.Toolbar}>
       <span
         className={classes.back}
         onClick={props.onReturnBack}
       >&#8656;</span>
       <h3 className={classes.title}>Toolbar</h3>
-
-      <ul className={classes.shipsList}>
+      {!props.startGame
+        ? <ul className={classes.shipsList}>
         <li>
           <input
             type="radio"
@@ -51,6 +52,9 @@ const Toolbar = props => {
           <label htmlFor="ship4">Крейсер x1</label>
         </li>
       </ul>
+        : null
+      }
+      
 
       {!props.startGame
         ? <button

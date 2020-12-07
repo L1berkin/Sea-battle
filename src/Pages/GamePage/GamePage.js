@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { checkCellsNearby, toogleShip } from '../../helpers/helper.functions';
+import { checkCellsNearby, toogleShip, shot } from '../../helpers/helper.functions';
 import InfoTitle from '../../Components/InfoTitle/InfoTitle';
 import PlayerFields from '../../Components/PlayerFields/PlayerFields';
 import Toolbar from '../../Components/Toolbar/Toolbar';
@@ -13,6 +13,7 @@ class GamePage extends Component {
       hideShipsPlayer2: false
     },
     activePlayer1: true,
+    block: false,
     sizeShip: 0,
     player1: [],
     player2: []
@@ -27,6 +28,8 @@ class GamePage extends Component {
       const cell = {
         sizeShip: 0,
         haveShip: false,
+        hit: false,
+        miss: false,
         id: i
       }
       player1.push(cell)
@@ -42,12 +45,22 @@ class GamePage extends Component {
   startGameHandler = () => {
     const newHideShipsState = {...this.state.hideShips}
 
-    newHideShipsState.hideShipsPlayer1 = true
-    // После первого нажатия
-    this.setState({
-      readyGame: true,
-      hideShips: newHideShipsState
-    })
+    
+    if (this.state.activePlayer1) {
+      newHideShipsState.hideShipsPlayer1 = true
+      this.setState({
+        activePlayer1: false,
+        hideShips: newHideShipsState
+      })
+    } else {
+      newHideShipsState.hideShipsPlayer2 = true
+      this.setState({
+        readyGame: true,
+        activePlayer1: true,
+        hideShips: newHideShipsState
+      })
+    }
+    
   }
 
   changeShip = event => {
@@ -57,22 +70,47 @@ class GamePage extends Component {
   }
 
   onClickHandler = cell => {
-    const player1 = this.state.player1.slice()
-    const newCell = player1[cell.id]
-    console.log(cell)
-    if (!this.state.readyGame) {
-      if (checkCellsNearby(this.state, cell)) {
-        toogleShip(this.state, player1, newCell)
+    if (!this.state.block) {
+      const state = {...this.state}
+      const player = this.state.activePlayer1 ? this.state.player1.slice() : this.state.player2.slice()
+      const newCell = {...player[cell.id]}
+      if (!this.state.readyGame) {
+        if (checkCellsNearby(state, newCell)) {
+          toogleShip(state, player, newCell)
+        }
+
+        this.state.activePlayer1
+        ? this.setState({
+          player1: player
+        })
+        : this.setState({
+          player2: player
+        })
+      } else {
+        player[newCell.id] = shot(newCell)
+
+        this.state.activePlayer1
+        ? this.setState({
+          player1: player,
+          block: true
+        })
+        : this.setState({
+          player2: player,
+          block: true
+        })
+
+        setTimeout(() => {
+          this.setState({
+            activePlayer1: !this.state.activePlayer1,
+            block: false
+          })
+        }, 1000)
       }
-
-      this.setState({player1})
-    } else {
-
-      console.log('Игра началась')
     }
   }
 
   render() {
+    console.log(this.state)
     return (
       <div className={classes.GamePage}>
         <h2 className={classes.title}>Sea battle</h2>
@@ -82,7 +120,9 @@ class GamePage extends Component {
           onChangeShip={this.changeShip}
           onReturnBack={this.props.onReturnBack}
         />
-        <InfoTitle 
+        <InfoTitle
+          startGame={this.state.readyGame}
+          activePlayer1={this.state.activePlayer1}
           namePlayer1={this.props.namePlayer1}
           namePlayer2={this.props.namePlayer2}
         />

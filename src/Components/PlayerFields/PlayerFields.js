@@ -13,7 +13,9 @@ const PlayerFields = props => {
           onClick={props.onClick}
         />
         : <Player2Field
+          hideShips={props.hideShips}
           player2={props.player2}
+          onClick={props.onClick}
         />
       }
     </div>

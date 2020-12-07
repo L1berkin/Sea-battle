@@ -9,6 +9,8 @@ const Player1Field = props => {
             classes.BoardCell
           ]
           cell.haveShip && !props.hideShips.hideShipsPlayer1 ? cls.push(classes.board) : cls.push()
+          cell.hit ? cls.push(classes.hit) : cls.push()
+          cell.miss ? cls.push(classes.miss) : cls.push()
 
           return (
             <div
