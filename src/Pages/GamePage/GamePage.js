@@ -132,7 +132,6 @@ class GamePage extends Component {
   }
 
   render() {
-    console.log(this.state)
     return (
       <div className={classes.GamePage}>
         <h2 className={classes.title}>Морской бой</h2>

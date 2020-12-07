@@ -1,31 +1,26 @@
-// Добавить / Убрать ячейку корабля
 export function toogleShip(state, player, cell) {
   switch (state.sizeShip) {
     case 1
-      : console.log('однопалубный')
-      cell.haveShip = !player[cell.id].haveShip
+      : cell.haveShip = !player[cell.id].haveShip
       cell.sizeShip = cell.sizeShip ? 0 : 1
       break
     case 2
-      : console.log('двухпалубный')
-      cell.haveShip = !player[cell.id].haveShip
+      : cell.haveShip = !player[cell.id].haveShip
       cell.sizeShip = cell.sizeShip ? 0 : 2
       break
     case 3
-      : console.log('трехпалубный')
-      cell.haveShip = !player[cell.id].haveShip
+      : cell.haveShip = !player[cell.id].haveShip
       cell.sizeShip = cell.sizeShip ? 0 : 3
       break
     case 4
-      : console.log('четырехпалубный')
-      cell.haveShip = !player[cell.id].haveShip
+      : cell.haveShip = !player[cell.id].haveShip
       cell.sizeShip = cell.sizeShip ? 0 : 4
       break
     default: alert('Выберите размер корабля, чтобы добавить корабль на поле.')
   }
   player[cell.id] = cell
 }
-// Проверка на соседние ячейки + количество кораблей 
+
 export function checkCellsNearby(state, cell, player) {
   const id = cell.id
   const notValidIds = calcCellsNearby(id).filter( id => id < 0 ? null : id < 99 ? player[id].haveShip : null)
@@ -56,7 +51,7 @@ export function checkCellsNearby(state, cell, player) {
 
   return false
 }
-// Подсчет количества соседних ячеек, где нельяз расположить корабль
+
 function calcCellsNearby(id) {
   const arrayId = id.toString().split('')
   
@@ -77,7 +72,7 @@ function calcCellsNearby(id) {
   }
   return notValidIds
 }
-// Проверка на количество кораблей
+
 function checkQuantityShips(size, player) {
   const quantity = player.filter( cell => cell.sizeShip === size)
   let res
