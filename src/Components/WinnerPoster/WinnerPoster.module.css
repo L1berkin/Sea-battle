@@ -15,67 +15,54 @@
 .title {
   text-align: center;
   text-transform: uppercase;
+  color: #fff;
   animation: title 5s reverse linear infinite;
 }
 
 @keyframes rotate {
   0% {
-    color: rgb(255, 255, 255);
     transform: rotate(0deg);
   }
   20% {
-    color: rgb(255, 255, 0);
     transform: rotate(72deg);
   }
   40% {
-    color: rgb(255, 0, 0);
     transform: rotate(144deg);
   }
   50% {
-    color: rgb(0, 231, 0);
     transform: rotate(180deg);
   }
   60% {
-    color: rgb(0, 160, 0);
     transform: rotate(216deg);
   }
   80% {
-    color: rgb(0, 0, 255);
     transform: rotate(288deg);
   }
   100% {
-    color: rgb(255, 255, 255);
     transform: rotate(360deg);
   }
 }
 
 @keyframes title {
   0% {
-    color: rgb(255, 255, 255);
     transform: rotate(0deg) scale(1);
   }
   20% {
-    color: rgb(255, 255, 0);
     transform: rotate(72deg) scale(1.1);
   }
   40% {
-    color: rgb(255, 0, 0);
     transform: rotate(144deg) scale(1.2);
   }
   50% {
-    color: rgb(0, 231, 0);
     transform: rotate(180deg) scale(1.25);
   }
   60% {
-    color: rgb(0, 160, 0);
     transform: rotate(216deg) scale(1.2);
   }
   80% {
-    color: rgb(0, 0, 255);
     transform: rotate(288deg) scale(1.1);
   }
   100% {
-    color: rgb(255, 255, 255);
     transform: rotate(360deg) scale(1);
   }
 }
