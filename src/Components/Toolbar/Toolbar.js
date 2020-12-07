@@ -8,9 +8,8 @@ const Toolbar = props => {
         className={classes.back}
         onClick={props.onReturnBack}
       >&#8656;</span>
-      <h3 className={classes.title}>Toolbar</h3>
-      {!props.startGame
-        ? <ul className={classes.shipsList}>
+      <h3 className={classes.title}>Настроки</h3>
+      <ul className={classes.shipsList}>
         <li>
           <input
             type="radio"
@@ -52,17 +51,12 @@ const Toolbar = props => {
           <label htmlFor="ship4">Крейсер x1</label>
         </li>
       </ul>
-        : null
-      }
       
 
-      {!props.startGame
-        ? <button
+       <button
         className={classes.btn}
         onClick={props.onReadyBtn}
       >Готово</button>
-      : null
-      }
     </div>
   )
 }

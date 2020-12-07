@@ -4,7 +4,7 @@ import classes from './StartPage.module.css'
 const StartPage = props => {
   return (
     <div className={classes.StartPage}>
-      <h1 className={classes.title}>Sea battle</h1>
+      <h1 className={classes.title}>Морской бой</h1>
 
       <PlayersName 
         namePlayer1={props.namePlayer1}
@@ -15,7 +15,7 @@ const StartPage = props => {
       <button
         className={classes.btn}
         onClick={props.startTap}
-        >start</button>
+        >Старт</button>
     </div>
   )
 }

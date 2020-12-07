@@ -6,7 +6,7 @@ const InfoTitle = props => {
     : `${props.activePlayer1 ? props.namePlayer1 : props.namePlayer2} ходит`
   return (
     <p className={classes.InfoTitle}>
-      {text}
+      {props.winner === 0 ? text : 'Игра окончена'}
     </p>
   )
 }

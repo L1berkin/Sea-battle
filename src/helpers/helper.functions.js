@@ -26,19 +26,19 @@ export function toogleShip(state, player, cell) {
   player[cell.id] = cell
 }
 // Проверка на соседние ячейки + количество кораблей 
-export function checkCellsNearby(state, cell) {
+export function checkCellsNearby(state, cell, player) {
   const id = cell.id
-  const notValidIds = calcCellsNearby(id).filter( id => id < 0 ? null : id < 99 ? state.player1[id].haveShip : null)
+  const notValidIds = calcCellsNearby(id).filter( id => id < 0 ? null : id < 99 ? player[id].haveShip : null)
   if (!notValidIds.length) {
     let res
     switch (state.sizeShip) {
-      case 1: res = cell.haveShip ? checkQuantityShips(state, 2) : checkQuantityShips(state, 1)
+      case 1: res = cell.haveShip ? checkQuantityShips(2, player) : checkQuantityShips(1, player)
       break
-      case 2: res = cell.haveShip ? checkQuantityShips(state, 3) : checkQuantityShips(state, 2)
+      case 2: res = cell.haveShip ? checkQuantityShips(3, player) : checkQuantityShips(2, player)
       break
-      case 3: res = cell.haveShip ? checkQuantityShips(state, 4) : checkQuantityShips(state, 3)
+      case 3: res = cell.haveShip ? checkQuantityShips(4, player) : checkQuantityShips(3, player)
       break
-      case 4: res = cell.haveShip ? checkQuantityShips(state, 5) : checkQuantityShips(state, 4)
+      case 4: res = cell.haveShip ? checkQuantityShips(5, player) : checkQuantityShips(4, player)
       break
       default: res = true
       break
@@ -78,8 +78,8 @@ function calcCellsNearby(id) {
   return notValidIds
 }
 // Проверка на количество кораблей
-function checkQuantityShips(state, size) {
-  const quantity = state.player1.filter( cell => cell.sizeShip === size)
+function checkQuantityShips(size, player) {
+  const quantity = player.filter( cell => cell.sizeShip === size)
   let res
   switch (size) {
     case 1:
@@ -111,4 +111,18 @@ export function shot(cell) {
     cell.miss = true
   }
   return cell
+}
+
+export function checkWin(state) {
+  let res
+  if (state.activePlayer1) {
+    const hits = state.player1.filter(cell => cell.hit)
+    const haveShip = state.player1.filter(cell => cell.haveShip)
+    res = hits.length === haveShip.length ? 1 : 0
+  } else {
+    const hits = state.player2.filter(cell => cell.hit === true)
+    const haveShip = state.player2.filter(cell => cell.haveShip === true)
+    res = hits.length === haveShip.length ? 2 : 0
+  }
+  return res
 }
