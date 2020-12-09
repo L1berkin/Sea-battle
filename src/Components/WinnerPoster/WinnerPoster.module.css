@@ -17,6 +17,7 @@
   text-transform: uppercase;
   color: #fff;
   animation: title 5s reverse linear infinite;
+  user-select: none;
 }
 
 @keyframes rotate {

@@ -113,11 +113,12 @@ export function checkWin(state) {
   if (state.activePlayer1) {
     const hits = state.player1.filter(cell => cell.hit)
     const haveShip = state.player1.filter(cell => cell.haveShip)
-    res = hits.length === haveShip.length ? 1 : 0
+    res = hits.length === haveShip.length ? 2 : 0
   } else {
     const hits = state.player2.filter(cell => cell.hit === true)
     const haveShip = state.player2.filter(cell => cell.haveShip === true)
-    res = hits.length === haveShip.length ? 2 : 0
+    res = hits.length === haveShip.length ? 1 : 0
   }
+  console.log(res)
   return res
 }

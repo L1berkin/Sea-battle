@@ -121,12 +121,13 @@ class GamePage extends Component {
         })
 
         setTimeout(() => {
+          const win = checkWin(this.state)
           this.setState({
-            win: checkWin(this.state),
+            win,
             activePlayer1: !this.state.activePlayer1,
             block: false
           })
-        }, 1000)
+        }, 800)
       }
     }
   }
