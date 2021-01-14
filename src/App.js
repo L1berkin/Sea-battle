@@ -1,4 +1,4 @@
-import { Component } from "react";
+import {Component} from "react";
 import Layout from "./hoc/Layout/Layout";
 import GamePage from "./Pages/GamePage/GamePage";
 import StartPage from "./Pages/StartPage/StartPage";
