@@ -1,5 +1,6 @@
+import { reShotCheck } from "../../helpers/helpers.function";
 import { useRedux } from "../../hoc/ReduxProvider/ReduxProvider";
-import { changeCourse, hit, miss } from "../../redux/actionCreators";
+import { aAddShip, aRemoveShip, changeCourse, hit, miss } from "../../redux/actionCreators";
 import classes from "./GameField.module.scss";
 
 function GameField({player}) {
@@ -7,16 +8,24 @@ function GameField({player}) {
 
   const cellClickHandler = e => {
     const id = e.target.id
-    if (!state[player].cells[id].hit && !state[player].cells[id].miss) {
-      if (!state.blockForShot) {
-        if (state[player].cells[id].haveShip) {
-          dispatch(hit(id, player))
-        } else {
-          dispatch(miss(id, player))
+    if (+state.sizeShip === 0) {
+      if (reShotCheck(state, player, id)) {
+        if (!state.blockForShot) {
+          if (state[player].cells[id].haveShip) {
+            dispatch(hit(id, player))
+          } else {
+            dispatch(miss(id, player))
+          }
+          setTimeout(() => {
+            dispatch(changeCourse())
+          }, 1000);
         }
-        setTimeout(() => {
-          dispatch(changeCourse())
-        }, 1000);
+      }
+    } else {
+      if (state[player].cells[id].haveShip) {
+        dispatch(aRemoveShip(id, player))
+      } else {
+        dispatch(aAddShip(id, player))
       }
     }
   }
@@ -26,6 +35,7 @@ function GameField({player}) {
         state[player].cells.map((_, index) => {
           const cls = [
             classes.cell,
+            state[player].cells[index].haveShip ? classes.haveShip : null,
             state[player].cells[index].hit ? classes.hit : null,
             state[player].cells[index].miss ? classes.miss : null
           ]

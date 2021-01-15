@@ -6,14 +6,16 @@ import {
   INITIAL_GAME_FIELD_1,
   INITIAL_GAME_FIELD_2,
   MISS,
-  CHANGE_SIZE_SHIP
+  CHANGE_SIZE_SHIP,
+  ADD_SHIP_CELL,
+  REMOVE_SHIP_CELL
 } from "./actionTypes";
 
 export const initialState = {
   StartPage: true,
   player1Move: true,
-  blockForShot: false,
   sizeShip: '1',
+  blockForShot: false,
   player1: {
     name: '',
     cells: []
@@ -72,6 +74,20 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         sizeShip: action.payload
       }
+    }
+    case ADD_SHIP_CELL: {
+      const newState = {
+        ...state
+      }
+      newState[action.player].cells.forEach((cell, index) => +action.id === index ? cell.haveShip = true : null)
+      return newState
+    }
+    case REMOVE_SHIP_CELL: {
+      const newState = {
+        ...state
+      }
+      newState[action.player].cells.forEach((cell, index) => +action.id === index ? cell.haveShip = false : null)
+      return newState
     }
     case CHANGE_PLAYER_1_NAME: {
       return {

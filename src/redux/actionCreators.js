@@ -6,7 +6,9 @@ import {
   INITIAL_GAME_FIELD_1,
   INITIAL_GAME_FIELD_2,
   MISS,
-  CHANGE_SIZE_SHIP
+  CHANGE_SIZE_SHIP,
+  ADD_SHIP_CELL,
+  REMOVE_SHIP_CELL
 } from './actionTypes'
 
 export const initialGameField1 = (cells) => {
@@ -63,5 +65,21 @@ export const aChangeSizeShip = (id) => {
   return {
     type: CHANGE_SIZE_SHIP,
     payload: id
+  }
+}
+
+export const aAddShip = (id, player) => {
+  return {
+    type: ADD_SHIP_CELL,
+    id,
+    player
+  }
+}
+
+export const aRemoveShip = (id, player) => {
+  return {
+    type: REMOVE_SHIP_CELL,
+    id,
+    player
   }
 }
