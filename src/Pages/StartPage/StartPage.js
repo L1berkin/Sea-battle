@@ -1,22 +1,21 @@
-import PlayersName from '../../Components/PlayersName/PlayersName';
-import classes from './StartPage.module.css'
+import Input from '../../components/Input/Input'
+import Title from '../../components/Title/Title'
+import classes from './StartPage.module.scss'
 
-const StartPage = props => {
+function StartPage() {
   return (
-    <div className={classes.StartPage}>
-      <h1 className={classes.title}>Морской бой</h1>
-
-      <PlayersName 
-        namePlayer1={props.namePlayer1}
-        namePlayer2={props.namePlayer2}
-        namePlayerHandler={props.namePlayerHandler}
-      />
-      
-      <button
-        className={classes.btn}
-        onClick={props.startTap}
-        >Старт</button>
-    </div>
+    <main className={classes.StartPage}>
+      <Title text="Морской бой" size="6em" />
+      <div className={classes.inputBox}>
+        <Input 
+          label="Введите имя игрока"
+        />
+        <Input 
+          label="Введите имя игрока"
+        />
+      </div>
+      <button className={classes.btn}>Старт</button>
+    </main>
   )
 }
 

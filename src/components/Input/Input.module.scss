@@ -1,0 +1,30 @@
+@import '../../assets/variables.scss';
+
+.Input {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 20px;
+
+  label {
+    color: $color;
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+  }
+
+  input {
+    padding: 5px 10px;
+    font-weight: bold;
+    font-size: 1.2em;
+    border-radius: 10px;
+    color: rgb(75, 120, 255);
+    &:hover {
+      background: #ccc;
+    }
+    &:focus {
+      background: #fff;
+      box-shadow: 0 0 15px 0 rgb(75, 120, 255);
+    }
+  }
+}
+
