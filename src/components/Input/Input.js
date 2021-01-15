@@ -1,7 +1,7 @@
 import classes from './Input.module.scss'
 
 function Input(props) {
-  const id = Date.now()
+  const id = Date.now() + Math.random()
   return (
     <div className={classes.Input}>
       {
@@ -14,6 +14,8 @@ function Input(props) {
       <input
         type="text"
         id={id}
+        value={props.value}
+        onChange={props.onChange}
       />
     </div>
   )
