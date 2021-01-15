@@ -1,21 +1,83 @@
-import { CHANGE_PLAYER_1_NAME, CHANGE_PLAYER_2_NAME } from "./actionTypes";
+import { 
+  CHANGE_COURSE,
+  CHANGE_PLAYER_1_NAME, 
+  CHANGE_PLAYER_2_NAME, 
+  HIT, 
+  INITIAL_GAME_FIELD_1,
+  INITIAL_GAME_FIELD_2,
+  MISS,
+  CHANGE_SIZE_SHIP
+} from "./actionTypes";
 
 export const initialState = {
   StartPage: true,
+  player1Move: true,
+  blockForShot: false,
+  sizeShip: '1',
   player1: {
-    name: ''
+    name: '',
+    cells: []
   },
   player2: {
-    name: ''
+    name: '',
+    cells: []
   }
 }
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
+    case INITIAL_GAME_FIELD_1: {
+      return{
+        ...state,
+        player1: {
+          ...state.player1,
+          cells: action.payload
+        }
+      }
+    }
+    case INITIAL_GAME_FIELD_2: {
+      return{
+        ...state,
+        player2: {
+          ...state.player2,
+          cells: action.payload
+        }
+      }
+    }
+    case HIT: {
+      const newState = {
+        ...state,
+        blockForShot: true
+      }
+      newState[action.player].cells.forEach((cell, index) => +action.id === index ? cell.hit = true : null)
+      return newState
+    }
+    case MISS: {
+      const newState = {
+        ...state,
+        blockForShot: true
+      }
+      newState[action.player].cells.forEach((cell, index) => +action.id === index ? cell.miss = true : null)
+      return newState
+    }
+    case CHANGE_COURSE: {
+      return {
+        ...state,
+        player1Move: !state.player1Move,
+        blockForShot: false
+      }
+    }
+    case CHANGE_SIZE_SHIP: {
+      return {
+        ...state,
+        sizeShip: action.payload
+      }
+    }
     case CHANGE_PLAYER_1_NAME: {
       return {
         ...state,
         player1: {
+          ...state.player1,
           name: action.payload
         }
       }
@@ -24,6 +86,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         player2: {
+          ...state.player2,
           name: action.payload
         }
       }

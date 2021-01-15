@@ -4,6 +4,28 @@
   top: 0;
   bottom: 0;
   width: 300px;
+  padding-top: 20px;
   border-right: 2px solid #fff;
   background: linear-gradient(rgba(21, 0, 255, 0.2) 0%, rgba(8, 0, 90, 0.3) 100%);
+
+  .btn {
+    width: 50%;
+    height: 40px;
+    font-weight: bold;
+    font-size: 1.5em;
+    margin: 0 25%;
+    color: #fff;
+    background: rgb(0, 34, 255);
+    border-radius: 20px;
+    transition-duration: .5s;
+    &:hover {
+      box-shadow: 0 5px 15px 0 rgb(75, 120, 255);
+    }
+    &:active {
+      margin-top: 5px;
+      color: #ccc;
+      background: rgb(0, 29, 221);
+      box-shadow: 0 0px 15px 0 rgb(75, 120, 255);
+    }
+  }
 }

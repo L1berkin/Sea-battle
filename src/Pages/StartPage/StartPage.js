@@ -7,6 +7,14 @@ import { Link } from 'react-router-dom'
 
 function StartPage() {
   const {state, dispatch} = useRedux()
+  const cls = [
+    classes.btn,
+    classes.disable
+  ]
+
+  if (state.player1.name && state.player2.name) {
+    cls.pop()
+  }
 
   const changeNamePlayer1 = e => dispatch(aChangeNamePlayer1(e.target.value))
   const changeNamePlayer2 = e => dispatch(aChangeNamePlayer2(e.target.value))
@@ -26,7 +34,7 @@ function StartPage() {
           value={state.player2.name}
         />
       </div>
-      <Link to="/game" className={classes.btn}>Старт</Link>
+      <Link to="/game" className={cls.join(' ')}>Старт</Link>
     </main>
   )
 }
