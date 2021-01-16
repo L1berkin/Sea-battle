@@ -8,11 +8,15 @@ import {
   MISS,
   CHANGE_SIZE_SHIP,
   ADD_SHIP_CELL,
-  REMOVE_SHIP_CELL
+  REMOVE_SHIP_CELL,
+  START_GAME,
+  WIN_GAME
 } from "./actionTypes";
 
 export const initialState = {
   StartPage: true,
+  gameStarted: false,
+  gameEnd: false,
   player1Move: true,
   sizeShip: '1',
   blockForShot: false,
@@ -79,15 +83,38 @@ const rootReducer = (state = initialState, action) => {
       const newState = {
         ...state
       }
-      newState[action.player].cells.forEach((cell, index) => +action.id === index ? cell.haveShip = true : null)
+      newState[action.player].cells.forEach((cell, index) => {
+        if (+action.id === index) {
+          cell.haveShip = true
+          cell.sizeShip = +action.size
+        }
+      })
       return newState
     }
     case REMOVE_SHIP_CELL: {
       const newState = {
         ...state
       }
-      newState[action.player].cells.forEach((cell, index) => +action.id === index ? cell.haveShip = false : null)
+      newState[action.player].cells.forEach((cell, index) => {
+        if (+action.id === index) {
+          cell.haveShip = false
+          cell.sizeShip = 0
+        }
+      })
       return newState
+    }
+    case START_GAME: {
+      return {
+        ...state,
+        gameStarted: true,
+        sizeShip: 0
+      }
+    }
+    case WIN_GAME: {
+      return {
+        ...state,
+        gameEnd: true
+      }
     }
     case CHANGE_PLAYER_1_NAME: {
       return {

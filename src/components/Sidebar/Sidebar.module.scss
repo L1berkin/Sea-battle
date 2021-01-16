@@ -1,11 +1,14 @@
+$width: 300px;
+
 .Sidebar {
   position: absolute;
   left: 0;
   top: 0;
   bottom: 0;
-  width: 300px;
+  width: $width;
   padding-top: 20px;
   border-right: 2px solid #fff;
+  transition-duration: 1s;
   background: linear-gradient(rgba(21, 0, 255, 0.2) 0%, rgba(8, 0, 90, 0.3) 100%);
 
   .btn {
@@ -29,4 +32,8 @@
       box-shadow: 0 0px 15px 0 rgb(75, 120, 255);
     }
   }
+}
+
+.close {
+  left: -$width;
 }

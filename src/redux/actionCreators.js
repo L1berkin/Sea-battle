@@ -8,7 +8,9 @@ import {
   MISS,
   CHANGE_SIZE_SHIP,
   ADD_SHIP_CELL,
-  REMOVE_SHIP_CELL
+  REMOVE_SHIP_CELL,
+  START_GAME,
+  WIN_GAME
 } from './actionTypes'
 
 export const initialGameField1 = (cells) => {
@@ -68,11 +70,12 @@ export const aChangeSizeShip = (id) => {
   }
 }
 
-export const aAddShip = (id, player) => {
+export const aAddShip = (id, player, size) => {
   return {
     type: ADD_SHIP_CELL,
     id,
-    player
+    player,
+    size
   }
 }
 
@@ -81,5 +84,17 @@ export const aRemoveShip = (id, player) => {
     type: REMOVE_SHIP_CELL,
     id,
     player
+  }
+}
+
+export const aStartGame = () => {
+  return {
+    type: START_GAME
+  }
+}
+
+export const aWinGame = () => {
+  return {
+    type: WIN_GAME
   }
 }

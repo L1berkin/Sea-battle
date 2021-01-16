@@ -1,9 +1,15 @@
 import classes from "./ComandTitle.module.scss";
 
-function ComandTitle() {
+function ComandTitle({player, started, end}) {
   return (
     <section className={classes.ComandTitle}>
-      Какой-то текст
+      {
+        end 
+          ? `Победа`
+          : started
+            ? `Ходит ${player}`
+            : `${player} разместите свои корабли`
+      }
     </section>
   )
 }

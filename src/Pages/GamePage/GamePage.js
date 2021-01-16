@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import ComandTitle from "../../components/ComandTitle/ComandTitle";
+import Finish from "../../components/Finish/Finish";
 import GameField from "../../components/GameField/GameField";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Title from "../../components/Title/Title";
@@ -10,7 +11,14 @@ import classes from "./GamePage.module.scss";
 
 function GamePage() {
   const {state, dispatch} = useRedux()
-  const movePlayer = state.player1Move ? 'player1' : 'player2'
+  let filedPlayer
+  if (state.gameStarted) {
+    filedPlayer = state.player1Move ? 'player2' : 'player1'
+  } else {
+    filedPlayer = state.player1Move ? 'player1' : 'player2'
+  }
+  // win
+  const movePlayer = state.player1Move ? state.player1.name : state.player2.name
 
   useEffect(() => {
     dispatch(initialGameField1(generateGameField(100)))
@@ -19,10 +27,14 @@ function GamePage() {
 
   return (
     <main className={classes.GamePage}>
-      <Sidebar />
+      <Sidebar close={state.gameStarted} />
       <Title text="Морско бой" size="4em" />
-      <ComandTitle />
-      <GameField player={movePlayer} />
+      <ComandTitle player={movePlayer} started={state.gameStarted} end={state.gameEnd} />
+      {
+        state.gameEnd
+          ? <Finish player={movePlayer} />
+          : <GameField player={filedPlayer} />
+      }
     </main>
   )
 }
