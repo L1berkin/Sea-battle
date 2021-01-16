@@ -1,0 +1,43 @@
+.GameField {
+  width: 300px;
+  height: 300px;
+  margin-top: 5vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr ;
+
+  .cell {
+    border: 1px solid #ccc;
+    transition-duration: .2s;
+    &:hover {
+      background: rgba(204, 204, 204, 0.3);
+    }
+    &:active {
+      background: rgba(118, 118, 118, 0.2);
+    }
+  }
+
+  .hit {
+    background: red;
+    &:hover {
+      background: red;
+    }
+    &:active {
+      background: rgba(255, 0, 0, .8);
+    }
+  }
+
+  .miss {
+    background: #ccc;
+    &:hover {
+      background: #ccc;
+    }
+    &:active {
+      background: rgba(204, 204, 204, .8);
+    }
+  }
+
+  .haveShip {
+    background: blue;
+  }
+}

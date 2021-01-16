@@ -1,0 +1,22 @@
+@import '../../assets/variables.scss';
+
+.input {
+  display: none;
+}
+
+.label {
+  padding: 0 20px;
+  color: $color;
+  font-weight: 500;
+  font-size: 1.1em;
+  transition: padding-left 1s;
+  cursor: pointer;
+  &:hover {
+    color: #fff;
+  }
+  &.active {
+    color: rgb(143, 208, 236);
+    font-weight: bold;
+    padding-left: 60px;
+  }
+}

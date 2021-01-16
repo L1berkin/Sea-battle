@@ -13,7 +13,8 @@ $ npm start
 - React
 
 ### Как это выглядит:
-![Стартовая страница](./preview/StartPage.jpg)
+![Стартовая страница-1](./preview/StartPage_1.jpg)
+![Стартовая страница-2](./preview/StartPage_2.jpg)
 ![Добавление кораблей](./preview/AddShips.jpg)
 ![Процесс игры](./preview/GamePage.jpg)
 ![Победитель](./preview/WinnerPage.jpg)
