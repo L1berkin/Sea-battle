@@ -11,6 +11,7 @@ $ npm start
 - HTML 5/ CSS
 - JavaScript
 - React
+- Redux
 
 ### Как это выглядит:
 ![Стартовая страница-1](./preview/StartPage_1.jpg)
