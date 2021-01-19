@@ -4,11 +4,13 @@
 ## Getting Started
 ```
 $ npm install
+$ npm uninstall node-sass 
+$ npm install node-sass@4.14.1
 $ npm start
 ```
 
 ## Использованные технологии:
-- HTML 5/ CSS
+- HTML 5 / SCSS
 - JavaScript
 - React
 - Redux
